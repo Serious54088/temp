@@ -1,0 +1,523 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>LoLalytics</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+  .typora-export h1::after, .typora-export h2::after, .typora-export h3::after, .typora-export h4::after, .typora-export h5::after, .typora-export h6::after { content: ""; display: block; height: 100px; margin-bottom: -100px; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+   margin: 0 auto;
+   padding: 30px;
+    padding-bottom: 100px;
+}
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+/*-------a标签配置链接属性----------*/
+a {
+    color: #4183C4;
+    text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+    margin-top:1.1em;margin-bottom:1em;/*调整标题与上下段落的间距*/
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    padding-left: 9px;
+    border-left: 6px solid #ff7e79;
+    margin-top:1.1em;margin-bottom:1em;/*调整标题与上下段落的间距*/
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+    margin-top:1.1em;margin-bottom:1em;/*调整标题与上下段落的间距*/
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+    white-space: nowrap;  
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 0.2em 1em;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+ background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+ padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+ bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+ left: -1.5625rem;
+ top: .375rem;
+}
+#write>h4.md-focus:before{
+ left: -1.5625rem;
+ top: .285714286rem;
+}
+#write>h5.md-focus:before{
+ left: -1.5625rem;
+ top: .285714286rem;
+}
+#write>h6.md-focus:before{
+ left: -1.5625rem;
+ top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc {
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+i, cite, em, var, address, dfn {
+font-style: normal; /* 修改斜体强调 */
+font-size : 0.9em; !important;
+color: #656565;
+}
+
+
+
+</style>
+<link rel="icon" href="https://lolalytics.com/favicon.ico"/> 
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><figure><table><thead><tr><th><span>中文称号</span></th><th><span>中文名</span></th><th><span>英文称号</span></th><th><span>英文名</span></th></tr></thead><tbody><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Caitlyn.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/caitlyn/?mode=aram'><span>皮城女警</span></a></td><td><span>凯特琳</span><!--夹子、我老婆、射手BOT下路--></td><td><span>The Sheriff of Piltover</span></td><td><span>Caitlyn</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Ezreal.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/ezreal/?mode=aram'><span>探险家</span></a></td><td><span>伊泽瑞尔</span><!--ez、小黄毛、拳头亲儿子、射手BOT下路--></td><td><span>The Prodigal Explorer</span></td><td><span>Ezreal</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Sivir.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/sivir/?mode=aram'><span>战争女神</span></a></td><td><span>希维尔</span><!--轮子妈、射手BOT下路--></td><td><span>The Battle Mistress</span></td><td><span>Sivir</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Kayle.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/kayle/?mode=aram'><span>正义天使</span></a></td><td><span>凯尔</span><!--、战士TOP上单MID中单--></td><td><span>The Righteous</span></td><td><span>Kayle</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Senna.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/senna/?mode=aram'><span>涤魂圣枪</span></a></td><td><span>赛娜</span><!--、射手BOT下路SUP辅助--></td><td><span>The Redeemer</span></td><td><span>Senna</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Jinx.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/jinx/?mode=aram'><span>暴走萝莉</span></a></td><td><span>金克斯</span><!--平胸、对A、我老婆、射手BOT下路--></td><td><span>The Loose Cannon</span></td><td><span>Jinx</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Sona.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/sona/?mode=aram'><span>琴瑟仙女</span></a></td><td><span>娑娜</span><!--琴女、36E、奶、我老婆、辅助SUP辅助--></td><td><span>Maven of The Strings</span></td><td><span>Sona</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Swain.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/swain/?mode=aram'><span>诺克萨斯统领</span></a></td><td><span>斯维因</span><!--乌鸦、瘸子、法师SUP辅助--></td><td><span>The Noxian Grand General</span></td><td><span>Swain</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Jhin.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/jhin/?mode=aram'><span>戏命师</span></a></td><td><span>烬</span><!--送命师、红领烬、望远烬、瘸子、射手BOT下路--></td><td><span>The Virtuoso</span></td><td><span>Jhin</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Ashe.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/ashe/?mode=aram'><span>寒冰射手</span></a></td><td><span>艾希</span><!--爱射、我老婆、射手BOT下路--></td><td><span>The Frost Archer</span></td><td><span>Ashe</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Vladimir.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/vladimir/?mode=aram'><span>猩红收割者</span></a></td><td><span>弗拉基米尔</span><!--吸血鬼、石油领主、大姨妈、法师TOP上单MID中单--></td><td><span>The Crimson Reaper</span></td><td><span>Vladimir</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Morgana.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/morgana/?mode=aram'><span>堕落天使</span></a></td><td><span>莫甘娜</span><!--、法师SUP辅助--></td><td><span>Fallen Angel</span></td><td><span>Morgana</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Nami.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/nami/?mode=aram'><span>唤潮鲛姬</span></a></td><td><span>娜美</span><!--、辅助SUP辅助--></td><td><span>The Tidecaller</span></td><td><span>Nami</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Maokai.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/maokai/?mode=aram'><span>扭曲树精</span></a></td><td><span>茂凯</span><!--大树、坦克TOP上单SUP辅助--></td><td><span>The Twisted Treant</span></td><td><span>Maokai</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Alistar.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/alistar/?mode=aram'><span>牛头酋长</span></a></td><td><span>阿利斯塔</span><!--牛头人、老牛、坦克SUP辅助--></td><td><span>The Minotaur</span></td><td><span>Alistar</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Janna.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/janna/?mode=aram'><span>风暴之怒</span></a></td><td><span>迦娜</span><!--998、风女、辅助SUP辅助--></td><td><span>The Storm&#39;s Fury</span></td><td><span>Janna</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/FiddleSticks.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/fiddlesticks/?mode=aram'><span>远古恐惧</span></a></td><td><span>费德提克</span><!--稻草人、法师JUG打野--></td><td><span>The Ancient Fear</span></td><td><span>Fiddlesticks</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Ziggs.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/ziggs/?mode=aram'><span>爆破鬼才</span></a></td><td><span>吉格斯</span><!--炸弹人、法师MID中单BOT下路--></td><td><span>The Hexplosives Expert</span></td><td><span>Ziggs</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Ivern.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/ivern/?mode=aram'><span>翠神</span></a></td><td><span>艾翁</span><!--蔡徐坤、坤坤、cxk、绿爸爸、辅助JUG打野--></td><td><span>The Green Father</span></td><td><span>Ivern</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/KogMaw.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/kogmaw/?mode=aram'><span>深渊巨口</span></a></td><td><span>克格&#39;莫</span><!--克格莫、大嘴、射手BOT下路--></td><td><span>The Mouth of The Abyss</span></td><td><span>Kog&#39;Maw</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Xerath.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/xerath/?mode=aram'><span>远古巫灵</span></a></td><td><span>泽拉斯</span><!--泽三炮、棺材板、特拉斯、法师MID中单SUP辅助--></td><td><span>The Magus Ascendant</span></td><td><span>Xerath</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/MissFortune.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/missfortune/?mode=aram'><span>赏金猎人</span></a></td><td><span>厄运小姐</span><!--女枪、好运姐、MF、我老婆、射手BOT下路--></td><td><span>The Bounty Hunter</span></td><td><span>Miss Fortune</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Viktor.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/viktor/?mode=aram'><span>机械先驱</span></a></td><td><span>维克托</span><!--三只手、电焊工、法师MID中单--></td><td><span>The Machine Herald</span></td><td><span>Viktor</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Ornn.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/ornn/?mode=aram'><span>山隐之焰</span></a></td><td><span>奥恩</span><!--、坦克TOP上单MID中单--></td><td><span>The Fire below the Mountain</span></td><td><span>Ornn</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Annie.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/annie/?mode=aram'><span>黑暗之女</span></a></td><td><span>安妮</span><!--火女、橡皮妮、法师MID中单--></td><td><span>The Dark Child</span></td><td><span>Annie</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Riven.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/riven/?mode=aram'><span>放逐之刃</span></a></td><td><span>锐雯</span><!--瑞文、瑞雯、光速qa、我老婆、战士TOP上单MID中单--></td><td><span>The Exile</span></td><td><span>Riven</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Yorick.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/yorick/?mode=aram'><span>牧魂人</span></a></td><td><span>约里克</span><!--掘墓、战士TOP上单--></td><td><span>Shepherd of Souls</span></td><td><span>Yorick</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Lux.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/lux/?mode=aram'><span>光辉女郎</span></a></td><td><span>拉克丝</span><!--拳头亲儿女、我老婆、法师MID中单SUP辅助--></td><td><span>The Lady of Luminosity</span></td><td><span>Lux</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Leona.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/leona/?mode=aram'><span>曙光女神</span></a></td><td><span>蕾欧娜</span><!--日女、太阳妈、女坦、坦克SUP辅助--></td><td><span>The Radiant Dawn</span></td><td><span>Leona</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Lulu.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/lulu/?mode=aram'><span>仙灵女巫</span></a></td><td><span>璐璐</span><!--露露、otto、辅助TOP上单SUP辅助--></td><td><span>The Fae Sorceress</span></td><td><span>Lulu</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Graves.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/graves/?mode=aram'><span>法外狂徒</span></a></td><td><span>格雷福斯</span><!--张三、土匪、好兄弟、男枪、射手JUG打野--></td><td><span>The Outlaw</span></td><td><span>Graves</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Malzahar.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/malzahar/?mode=aram'><span>虚空先知</span></a></td><td><span>玛尔扎哈</span><!--蚂蚱、法师MID中单--></td><td><span>The Prophet of the Void</span></td><td><span>Malzahar</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/DrMundo.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/drmundo/?mode=aram'><span>祖安狂人</span></a></td><td><span>蒙多</span><!--、战士TOP上单JUG打野--></td><td><span>The Madman of Zaun</span></td><td><span>Dr. Mundo</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Ryze.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/ryze/?mode=aram'><span>符文法师</span></a></td><td><span>瑞兹</span><!--光头、雷电法王、流浪、灵车、开车、秃子、faker、大魔王、法师TOP上单MID中单--></td><td><span>The Rune Mage</span></td><td><span>Ryze</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Nautilus.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/nautilus/?mode=aram'><span>深海泰坦</span></a></td><td><span>诺提勒斯</span><!--钩子、坦克SUP辅助--></td><td><span>The Titan of the Depths</span></td><td><span>Nautilus</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Diana.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/diana/?mode=aram'><span>皎月女神</span></a></td><td><span>黛安娜</span><!--、战士MID中单--></td><td><span>Scorn of the Moon</span></td><td><span>Diana</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Darius.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/darius/?mode=aram'><span>诺克萨斯之手</span></a></td><td><span>德莱厄斯</span><!--诺手、小学生之手、断头台、战士TOP上单--></td><td><span>The Hand of Noxus</span></td><td><span>Darius</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Varus.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/varus/?mode=aram'><span>惩戒之箭</span></a></td><td><span>韦鲁斯</span><!--韦屌丝、反向Q、射手BOT下路--></td><td><span>The Arrow of Retribution</span></td><td><span>Varus</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Shaco.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/shaco/?mode=aram'><span>恶魔小丑</span></a></td><td><span>萨科</span><!--、刺客JUG打野SUP辅助--></td><td><span>The Demon Jester</span></td><td><span>Shaco</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Nasus.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/nasus/?mode=aram'><span>沙漠死神</span></a></td><td><span>内瑟斯</span><!--狗头、战士TOP上单--></td><td><span>The Curator of the Sands</span></td><td><span>Nasus</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Urgot.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/urgot/?mode=aram'><span>无畏战车</span></a></td><td><span>厄加特</span><!--螃蟹、首领之傲、战士TOP上单--></td><td><span>The Dreadnought</span></td><td><span>Urgot</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Akali.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/akali/?mode=aram'><span>离群之刺</span></a></td><td><span>阿卡丽</span><!--离谱之刺、拉胯丽、我老婆、刺客TOP上单MID中单--></td><td><span>The Rogue Assassin</span></td><td><span>Akali</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Amumu.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/amumu/?mode=aram'><span>殇之木乃伊</span></a></td><td><span>阿木木</span><!--、坦克JUG打野--></td><td><span>The Sad Mummy </span></td><td><span>Amumu</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Lissandra.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/lissandra/?mode=aram'><span>冰霜女巫</span></a></td><td><span>丽桑卓</span><!--冰女、我老婆、法师MID中单--></td><td><span>The Ice Witch</span></td><td><span>Lissandra</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Orianna.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/orianna/?mode=aram'><span>发条魔灵</span></a></td><td><span>奥莉安娜</span><!--、法师MID中单--></td><td><span>The Lady of Clockwork</span></td><td><span>Orianna</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Zyra.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/zyra/?mode=aram'><span>荆棘之兴</span></a></td><td><span>婕拉</span><!--花女、走路草、法师SUP辅助--></td><td><span>Rise of the Thorns</span></td><td><span>Zyra</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Lucian.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/lucian/?mode=aram'><span>圣枪游侠</span></a></td><td><span>卢锡安</span><!--奥巴马、卢仙、圣枪洗礼、射手TOP上单MID中单BOT下路--></td><td><span>The Purifier</span></td><td><span>Lucian</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Karthus.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/karthus/?mode=aram'><span>死亡颂唱者</span></a></td><td><span>卡尔萨斯</span><!--死歌、法师JUG打野--></td><td><span>The Deathsinger</span></td><td><span>Karthus</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Heimerdinger.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/heimerdinger/?mode=aram'><span>大发明家</span></a></td><td><span>黑默丁格</span><!--大头、法师TOP上单--></td><td><span>The Revered Inventor</span></td><td><span>Heimerdinger</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Cassiopeia.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/cassiopeia/?mode=aram'><span>魔蛇之拥</span></a></td><td><span>卡西奥佩娅</span><!--蛇女、法师TOP上单MID中单BOT下路--></td><td><span>The Serpent&#39;s Embrace</span></td><td><span>Cassiopeia</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Neeko.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/neeko/?mode=aram'><span>万花通灵</span></a></td><td><span>妮蔻</span><!--惹、法师MID中单SUP辅助--></td><td><span>the Curious Chameleon</span></td><td><span>Neeko</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Aatrox.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/aatrox/?mode=aram'><span>暗裔剑魔</span></a></td><td><span>亚托克斯</span><!--、战士TOP上单MID中单--></td><td><span>The Darkin Blade</span></td><td><span>Aatrox</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Galio.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/galio/?mode=aram'><span>正义巨像</span></a></td><td><span>加里奥</span><!--鸡里奥、坦克MID中单SUP辅助--></td><td><span>The Colossus</span></td><td><span>Galio</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/MonkeyKing.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/wukong/?mode=aram'><span>齐天大圣</span></a></td><td><span>孙悟空</span><!--猴子、战士TOP上单JUG打野--></td><td><span>The Monkey King</span></td><td><span>Wukong</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Twitch.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/twitch/?mode=aram'><span>瘟疫之源</span></a></td><td><span>图奇</span><!--老鼠、射手BOT下路--></td><td><span>The Plague Rat</span></td><td><span>Twitch</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Brand.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/brand/?mode=aram'><span>复仇焰魂</span></a></td><td><span>布兰德</span><!--火男、法师SUP辅助--></td><td><span>The Burning Vengeance</span></td><td><span>Brand</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Singed.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/singed/?mode=aram'><span>炼金术士</span></a></td><td><span>辛吉德</span><!--、坦克TOP上单--></td><td><span>Mad Chemist</span></td><td><span>Singed</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Trundle.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/trundle/?mode=aram'><span>巨魔之王</span></a></td><td><span>特朗德尔</span><!--柱子、战士JUG打野--></td><td><span>The Cursed Troll</span></td><td><span>Trundle</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Nidalee.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/nidalee/?mode=aram'><span>狂野女猎手</span></a></td><td><span>奈德丽</span><!--豹女、奶大力、刺客JUG打野--></td><td><span>The Bestial Huntress</span></td><td><span>Nidalee</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Ahri.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/ahri/?mode=aram'><span>九尾妖狐</span></a></td><td><span>阿狸</span><!--狐狸、我老婆、法师MID中单--></td><td><span>The Nine Tails Fox</span></td><td><span>Ahri</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Velkoz.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/velkoz/?mode=aram'><span>虚空之眼</span></a></td><td><span>维克兹</span><!--大眼、马眼、手电筒、触手、法师SUP辅助--></td><td><span>The Eye of The Void</span></td><td><span>Vel&#39;Koz</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Evelynn.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/evelynn/?mode=aram'><span>痛苦之拥</span></a></td><td><span>伊芙琳</span><!--寡妇、我老婆、刺客JUG打野--></td><td><span>Agony&#39;s Embrace</span></td><td><span>Evelynn</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Yasuo.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/yasuo/?mode=aram'><span>疾风剑豪</span></a></td><td><span>亚索</span><!--快乐风男、压缩、托儿所、托儿索、孤儿、浪子彦、哈撒给、战士TOP上单MID中单BOT下路--></td><td><span>The Unforgiven</span></td><td><span>Yasuo</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Sion.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/sion/?mode=aram'><span>亡灵战神</span></a></td><td><span>赛恩</span><!--老司机、塞恩、开车、坦克TOP上单--></td><td><span>The Undead Juggernaut</span></td><td><span>Sion</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Sett.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/sett/?mode=aram'><span>腕豪</span></a></td><td><span>瑟提</span><!--拳皇、蒋劲夫、拳男、男拳、战士TOP上单JUG打野SUP辅助--></td><td><span>The Boss</span></td><td><span>Sett</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Xayah.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/xayah/?mode=aram'><span>逆羽</span></a></td><td><span>霞</span><!--凤凰传奇、射手BOT下路--></td><td><span>The Rebel</span></td><td><span>Xayah</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Teemo.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/teemo/?mode=aram'><span>迅捷斥候</span></a></td><td><span>提莫</span><!--提百万、蘑菇、射手TOP上单--></td><td><span>The Swift Scout</span></td><td><span>Teemo</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Illaoi.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/illaoi/?mode=aram'><span>海兽祭司</span></a></td><td><span>俄洛伊</span><!--触手妈、章鱼妈、战士TOP上单--></td><td><span>The Kraken Priestess</span></td><td><span>Illaoi</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/TwistedFate.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/twistedfate/?mode=aram'><span>卡牌大师</span></a></td><td><span>崔斯特</span><!--、法师MID中单--></td><td><span>The Card Master</span></td><td><span>Twisted Fate</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Fiora.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/fiora/?mode=aram'><span>无双剑姬</span></a></td><td><span>菲奥娜</span><!--poss机、我老婆、战士TOP上单--></td><td><span>The Grand Duelist</span></td><td><span>Fiora</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Soraka.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/soraka/?mode=aram'><span>众星之子</span></a></td><td><span>索拉卡</span><!--奶妈、星妈、辅助SUP辅助--></td><td><span>The Starchild</span></td><td><span>Soraka</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Kassadin.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/kassadin/?mode=aram'><span>虚空行者</span></a></td><td><span>卡萨丁</span><!--jb脸、刺客MID中单--></td><td><span>The Void Walker</span></td><td><span>Kassadin</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Rakan.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/rakan/?mode=aram'><span>幻翎</span></a></td><td><span>洛</span><!--凤凰传奇、辅助SUP辅助--></td><td><span>The Charmer</span></td><td><span>Rakan</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Taric.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/taric/?mode=aram'><span>瓦洛兰之盾</span></a></td><td><span>塔里克</span><!--宝石、奶爸、辅助SUP辅助--></td><td><span>The Shield of Valoran</span></td><td><span>Taric</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Veigar.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/veigar/?mode=aram'><span>邪恶小法师</span></a></td><td><span>维迦</span><!--、法师MID中单SUP辅助--></td><td><span>The Tiny Master of Evil</span></td><td><span>Veigar</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Kayn.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/kayn/?mode=aram'><span>影流之镰</span></a></td><td><span>凯隐</span><!--、战士JUG打野--></td><td><span>The Shadow Reaper</span></td><td><span>Kayn</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Kaisa.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/kaisa/?mode=aram'><span>虚空之女</span></a></td><td><span>卡莎</span><!--我老婆、射手BOT下路--></td><td><span>Daughter of the Void</span></td><td><span>Kai&#39;Sa</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Rengar.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/rengar/?mode=aram'><span>傲之追猎者</span></a></td><td><span>雷恩加尔</span><!--狮子狗、刺客TOP上单JUG打野--></td><td><span>The Pridestalker</span></td><td><span>Rengar</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Irelia.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/irelia/?mode=aram'><span>刀锋舞者</span></a></td><td><span>艾瑞莉娅</span><!--刀妹、女刀、刀锋意志、我老婆、战士TOP上单MID中单--></td><td><span>The Blade Dancer</span></td><td><span>Irelia</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Kalista.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/kalista/?mode=aram'><span>复仇之矛</span></a></td><td><span>卡莉斯塔</span><!--滑板鞋、射手TOP上单BOT下路--></td><td><span>The Spear of Vengeance</span></td><td><span>Kalista</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Garen.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/garen/?mode=aram'><span>德玛西亚之力</span></a></td><td><span>盖伦</span><!--转圈圈、草丛伦、大保健、战士TOP上单MID中单--></td><td><span>The Might of Demacia</span></td><td><span>Garen</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Mordekaiser.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/mordekaiser/?mode=aram'><span>铁铠冥魂</span></a></td><td><span>莫德凯撒</span><!--铁男、铁皮、金属大师、战士TOP上单MID中单--></td><td><span>The Iron Revenant</span></td><td><span>Mordekaiser</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Gnar.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/gnar/?mode=aram'><span>迷失之牙</span></a></td><td><span>纳尔</span><!--、战士TOP上单--></td><td><span>The Missing Link</span></td><td><span>Gnar</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Tryndamere.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/tryndamere/?mode=aram'><span>蛮族之王</span></a></td><td><span>泰达米尔</span><!--蛮王、蛮子、蛮三刀、战士TOP上单--></td><td><span>The Barbarian King</span></td><td><span>Tryndamere</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Khazix.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/khazix/?mode=aram'><span>虚空掠夺者</span></a></td><td><span>卡&#39;兹克</span><!--卡兹克、螳螂、喜之螂、刺客JUG打野--></td><td><span>The Void Reaver</span></td><td><span>Kha&#39;Zix</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Jax.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/jax/?mode=aram'><span>武器大师</span></a></td><td><span>贾克斯</span><!--电风扇、战士TOP上单JUG打野--></td><td><span>Grandmaster at Arms</span></td><td><span>Jax</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Zed.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/zed/?mode=aram'><span>影流之主</span></a></td><td><span>劫</span><!--儿童劫、岳伦、刺客MID中单--></td><td><span>The Master of Shadows</span></td><td><span>Zed</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Vayne.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/vayne/?mode=aram'><span>暗夜猎手</span></a></td><td><span>薇恩</span><!--vn、滚地婆、uzi、申请书、443、射手TOP上单BOT下路--></td><td><span>The Night Hunter</span></td><td><span>Vayne</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Yuumi.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/yuumi/?mode=aram'><span>魔法猫咪</span></a></td><td><span>悠米</span><!--挂机猫、辅助SUP辅助--></td><td><span>The Magical Cat</span></td><td><span>Yuumi</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Hecarim.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/hecarim/?mode=aram'><span>战争之影</span></a></td><td><span>赫卡里姆</span><!--人马、战士TOP上单JUG打野--></td><td><span>The Shadow of War</span></td><td><span>Hecarim</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Kled.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/kled/?mode=aram'><span>暴怒骑士</span></a></td><td><span>克烈</span><!--、战士TOP上单MID中单--></td><td><span>The Cantankerous Cavalier</span></td><td><span>Kled</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Skarner.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/skarner/?mode=aram'><span>水晶先锋</span></a></td><td><span>斯卡纳</span><!--蝎子、战士TOP上单JUG打野--></td><td><span>The Crystal Vanguard</span></td><td><span>Skarner</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Corki.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/corki/?mode=aram'><span>英勇投弹手</span></a></td><td><span>库奇</span><!--飞机、射手MID中单--></td><td><span>The Daring Bombardier</span></td><td><span>Corki</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Chogath.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/chogath/?mode=aram'><span>虚空恐惧</span></a></td><td><span>科&#39;加斯</span><!--大虫子、科加斯、坦克TOP上单--></td><td><span>The Terror of The Void</span></td><td><span>Cho&#39;Gath</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Blitzcrank.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/blitzcrank/?mode=aram'><span>蒸汽机器人</span></a></td><td><span>布里茨</span><!--蒸饭机器人、钩子、坦克SUP辅助--></td><td><span>The Great Steam Golem</span></td><td><span>Blitzcrank</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Zac.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/zac/?mode=aram'><span>生化魔人</span></a></td><td><span>扎克</span><!--、坦克TOP上单JUG打野SUP辅助--></td><td><span>The Secret Weapon</span></td><td><span>Zac</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Leblanc.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/leblanc/?mode=aram'><span>诡术妖姬</span></a></td><td><span>乐芙兰</span><!--妖姬、幺鸡、一条姐、提款机、刺客MID中单--></td><td><span>The Deceiver</span></td><td><span>LeBlanc</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Fizz.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/fizz/?mode=aram'><span>潮汐海灵</span></a></td><td><span>菲兹</span><!--小鱼人、撒尿、娃娃鱼、刺客MID中单--></td><td><span>The Tidal Trickster</span></td><td><span>Fizz</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Sylas.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/sylas/?mode=aram'><span>解脱者</span></a></td><td><span>塞拉斯</span><!--偷男、蒜男、锁男、法师TOP上单JUG打野MID中单--></td><td><span>The Unshackled</span></td><td><span>Sylas</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Katarina.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/katarina/?mode=aram'><span>不祥之刃</span></a></td><td><span>卡特琳娜</span><!--旋转跳跃、匕首、女刀、我老婆、刺客MID中单--></td><td><span>The Sinister Blade</span></td><td><span>Katarina</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Elise.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/elise/?mode=aram'><span>蜘蛛女皇</span></a></td><td><span>伊莉丝</span><!--、法师JUG打野--></td><td><span>The Spider Queen</span></td><td><span>Elise</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Jayce.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/jayce/?mode=aram'><span>未来守护者</span></a></td><td><span>杰斯</span><!--杰西、战士TOP上单MID中单--></td><td><span>The Defender of Tomorrow</span></td><td><span>Jayce</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Draven.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/draven/?mode=aram'><span>荣耀行刑官</span></a></td><td><span>德莱文</span><!--刽子手、文特森、射手BOT下路--></td><td><span>The Glorious Executioner</span></td><td><span>Draven</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Taliyah.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/taliyah/?mode=aram'><span>岩雀</span></a></td><td><span>塔莉垭</span><!--、法师JUG打野--></td><td><span>The Stoneweaver</span></td><td><span>Taliyah</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/XinZhao.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/xinzhao/?mode=aram'><span>德邦总管</span></a></td><td><span>赵信</span><!--菊花信、赵日天、鸡毛信、信爷、赵神王、常山赵子龙、战士JUG打野--></td><td><span>The Seneschal of Demacia</span></td><td><span>Xin Zhao</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Camille.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/camille/?mode=aram'><span>青钢影</span></a></td><td><span>卡蜜尔</span><!--夺命剪刀脚、我老婆、女流氓、腿女、卡米尔、战士TOP上单MID中单--></td><td><span>The Steel Shadow</span></td><td><span>Camille</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/MasterYi.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/masteryi/?mode=aram'><span>无极剑圣</span></a></td><td><span>易</span><!--易大师、疯狗、刺客JUG打野--></td><td><span>The Wuju Bladesman</span></td><td><span>Master Yi</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Olaf.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/olaf/?mode=aram'><span>狂战士</span></a></td><td><span>奥拉夫</span><!--疯狗、战士TOP上单JUG打野--></td><td><span>The Berserker</span></td><td><span>Olaf</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Tristana.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/tristana/?mode=aram'><span>麦林炮手</span></a></td><td><span>崔丝塔娜</span><!--小炮、波比、炮娘、射手BOT下路--></td><td><span>The Megling Gunner</span></td><td><span>Tristana</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Quinn.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/quinn/?mode=aram'><span>德玛西亚之翼</span></a></td><td><span>奎因</span><!--鸟人、射手TOP上单--></td><td><span>Demacia&#39;s Wings</span></td><td><span>Quinn</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Malphite.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/malphite/?mode=aram'><span>熔岩巨兽</span></a></td><td><span>墨菲特</span><!--石头人、混分巨兽、坦克TOP上单MID中单SUP辅助--></td><td><span>Shard of The Monolith</span></td><td><span>Malphite</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Kennen.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/kennen/?mode=aram'><span>狂暴之心</span></a></td><td><span>凯南</span><!--电耗子、法师TOP上单--></td><td><span>The Heart of The Tempest</span></td><td><span>Kennen</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Syndra.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/syndra/?mode=aram'><span>暗黑元首</span></a></td><td><span>辛德拉</span><!--球女、法师MID中单--></td><td><span>The Dark Sovereigh</span></td><td><span>Syndra</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Aphelios.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/aphelios/?mode=aram'><span>残月之肃</span></a></td><td><span>厄斐琉斯</span><!--月男、无E烦、吴亦凡、月轮、五器大师、射手BOT下路--></td><td><span>The Weapon Of the Faithful</span></td><td><span>Aphelios</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Azir.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/azir/?mode=aram'><span>沙漠皇帝</span></a></td><td><span>阿兹尔</span><!--黄鸡、黄金脆皮鸡、沙皇、灵车漂移、法师MID中单--></td><td><span>The Emperor of The Sands</span></td><td><span>Azir</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Gangplank.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/gangplank/?mode=aram'><span>海洋之灾</span></a></td><td><span>普朗克</span><!--船长、队友之灾、战士TOP上单--></td><td><span>The Saltwater Scourge</span></td><td><span>Gangplank</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Renekton.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/renekton/?mode=aram'><span>荒漠屠夫</span></a></td><td><span>雷克顿</span><!--鳄鱼、战士TOP上单MID中单--></td><td><span>The Butcher of The Sands</span></td><td><span>Renekton</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Udyr.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/udyr/?mode=aram'><span>兽灵行者</span></a></td><td><span>乌迪尔</span><!--搓头师傅、战士JUG打野--></td><td><span>The Spirit Walker</span></td><td><span>Udyr</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Vi.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/vi/?mode=aram'><span>皮城执法官</span></a></td><td><span>蔚</span><!--喂、楚雨荨、拳女、女拳、我老婆、战士JUG打野--></td><td><span>The Piltover Enforcer</span></td><td><span>Vi</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Qiyana.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/qiyana/?mode=aram'><span>元素女皇</span></a></td><td><span>奇亚娜</span><!--圈子妈、呼啦圈、花圈女、琪亚娜、草履虫、刺客MID中单--></td><td><span>Empress of the Elements</span></td><td><span>Qiyana</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Zilean.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/zilean/?mode=aram'><span>时光守护者</span></a></td><td><span>基兰</span><!--时光老头、辅助SUP辅助--></td><td><span>Chronokeeper</span></td><td><span>Zilean</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/AurelionSol.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/aurelionsol/?mode=aram'><span>铸星龙王</span></a></td><td><span>奥瑞利安·索尔</span><!--歪嘴战神、最强赘婿、法师MID中单--></td><td><span>The Star Forger</span></td><td><span>Aurelion Sol</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Kindred.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/kindred/?mode=aram'><span>永猎双子</span></a></td><td><span>千珏</span><!--我老婆、射手JUG打野--></td><td><span>The Eternal Hunters</span></td><td><span>Kindred</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Ekko.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/ekko/?mode=aram'><span>时间刺客</span></a></td><td><span>艾克</span><!--祖安、刺客JUG打野MID中单--></td><td><span>The Boy Who Shattered Time</span></td><td><span>Ekko</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Thresh.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/thresh/?mode=aram'><span>魂锁典狱长</span></a></td><td><span>锤石</span><!--钩子、灯笼、辅助SUP辅助--></td><td><span>The Chain Warden</span></td><td><span>Thresh</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Shen.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/shen/?mode=aram'><span>暮光之眼</span></a></td><td><span>慎</span><!--肾、腰子、坦克TOP上单SUP辅助--></td><td><span>Eye of Twilight</span></td><td><span>Shen</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Rammus.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/rammus/?mode=aram'><span>披甲龙龟</span></a></td><td><span>拉莫斯</span><!--王八、坦克JUG打野--></td><td><span>The Armordillo</span></td><td><span>Rammus</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Braum.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/braum/?mode=aram'><span>弗雷尔卓德之心</span></a></td><td><span>布隆</span><!--防盗门、辅助SUP辅助--></td><td><span>The Heart of The Freljord</span></td><td><span>Braum</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Karma.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/karma/?mode=aram'><span>天启者</span></a></td><td><span>卡尔玛</span><!--扇子妈、法师SUP辅助--></td><td><span>The Enlightened One</span></td><td><span>Karma</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Talon.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/talon/?mode=aram'><span>刀锋之影</span></a></td><td><span>泰隆</span><!--男刀、刺客MID中单--></td><td><span>The Blade&#39;s Shadow</span></td><td><span>Talon</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Zoe.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/zoe/?mode=aram'><span>暮光星灵</span></a></td><td><span>佐伊</span><!--千送伊、睡眠气泡、法师MID中单--></td><td><span>The Aspect of Twilight</span></td><td><span>Zoe</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Poppy.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/poppy/?mode=aram'><span>圣锤之毅</span></a></td><td><span>波比</span><!--小炮、坦克TOP上单JUG打野SUP辅助--></td><td><span>Keeper of The Hammer</span></td><td><span>Poppy</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Pantheon.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/pantheon/?mode=aram'><span>不屈之枪</span></a></td><td><span>潘森</span><!--战争之王、斯巴达、战士MID中单SUP辅助--></td><td><span>the Unbreakable Spear</span></td><td><span>Pantheon</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Pyke.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/pyke/?mode=aram'><span>血港鬼影</span></a></td><td><span>派克</span><!--水鬼、钩子、辅助MID中单SUP辅助--></td><td><span>The Bloodharbor Ripper</span></td><td><span>Pyke</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/LeeSin.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/leesin/?mode=aram'><span>盲僧</span></a></td><td><span>李青</span><!--救死扶伤脚、盲星、国足、瞎子、小学僧、4396、回旋踢、战士JUG打野--></td><td><span>The Blind Monk</span></td><td><span>Lee Sin</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Lillia.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/lillia/?mode=aram'><span>含羞蓓蕾</span></a></td><td><span>莉莉娅</span><!--傻孢子、战士JUG打野--></td><td><span>Dream-Laden Bough</span></td><td><span>Lillia</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Warwick.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/warwick/?mode=aram'><span>祖安怒兽</span></a></td><td><span>沃里克</span><!--狼人、战士TOP上单JUG打野--></td><td><span>The Blood Hunter</span></td><td><span>Warwick</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Nocturne.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/nocturne/?mode=aram'><span>永恒梦魇</span></a></td><td><span>魔腾</span><!--NOC、刺客JUG打野MID中单--></td><td><span>The External Nightmare</span></td><td><span>Nocturne</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Anivia.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/anivia/?mode=aram'><span>冰晶凤凰</span></a></td><td><span>艾尼维亚</span><!--冰鸟、法师MID中单--></td><td><span>The Cryophoenix</span></td><td><span>Anivia</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Shyvana.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/shyvana/?mode=aram'><span>龙血武姬</span></a></td><td><span>希瓦娜</span><!--龙女、战士JUG打野--></td><td><span>The Half-Dragon</span></td><td><span>Shyvana</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Nunu.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/nunu/?mode=aram'><span>雪原双子</span></a></td><td><span>努努和威朗普</span><!--雪人、坦克JUG打野MID中单--></td><td><span>The Boy and His Yeti</span></td><td><span>Nunu &amp; Willump</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/JarvanIV.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/jarvaniv/?mode=aram'><span>德玛西亚皇子</span></a></td><td><span>嘉文四世</span><!--周杰伦、eq二连、坦克JUG打野--></td><td><span>The Exemplar of Demacia</span></td><td><span>Jarvan IV</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Bard.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/bard/?mode=aram'><span>星界游神</span></a></td><td><span>巴德</span><!--游吟诗人、辅助SUP辅助--></td><td><span>The Wandering Caretaker</span></td><td><span>Bard</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Gragas.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/gragas/?mode=aram'><span>酒桶</span></a></td><td><span>古拉加斯</span><!--啤酒人、肉蛋葱鸡、战士JUG打野SUP辅助--></td><td><span>The Rabble Rouser</span></td><td><span>Gragas</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Yone.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/yone/?mode=aram'><span>封魔剑魂</span></a></td><td><span>永恩</span><!--、刺客TOP上单MID中单--></td><td><span>Way of the Hunter</span></td><td><span>Yone</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/TahmKench.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/tahmkench/?mode=aram'><span>河流之王</span></a></td><td><span>塔姆</span><!--蛤蟆、鲶鱼、开车、舔、辅助TOP上单SUP辅助--></td><td><span>The River King</span></td><td><span>Tahm Kench</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Rumble.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/rumble/?mode=aram'><span>机械公敌</span></a></td><td><span>兰博</span><!--、战士TOP上单MID中单--></td><td><span>The Mechanized Menace</span></td><td><span>Rumble</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/RekSai.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/reksai/?mode=aram'><span>虚空遁地兽</span></a></td><td><span>雷克塞</span><!--挖掘机、战士JUG打野--></td><td><span>The Void Burrower</span></td><td><span>Rek&#39;Sai</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Sejuani.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/sejuani/?mode=aram'><span>北地之怒</span></a></td><td><span>瑟庄妮</span><!--猪女、坦克JUG打野--></td><td><span>Fury of the North</span></td><td><span>Sejuani</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Volibear.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/volibear/?mode=aram'><span>不灭狂雷</span></a></td><td><span>沃利贝尔</span><!--狗熊、战士TOP上单JUG打野--></td><td><span>The Relentless Storm</span></td><td><span>Volibear</span></td></tr><tr><td><img  src="https://game.gtimg.cn/images/lol/act/img/champion/Samira.png"  style="zoom:25%;" /><span>  </span><a href='https://lolalytics.com/lol/samira/?mode=aram'><span>沙漠玫瑰</span></a></td><td><span>莎弥拉 </span><!--鬼泣、但丁、莎米拉、射手MID中单BOT下路--></td><td><span>The Desert Rose</span></td><td><span>Samira</span></td></tr><tr><td><img src="https://game.gtimg.cn/images/lol/act/img/champion/Seraphine.png" style="zoom:25%;" /><span> </span><a href='https://lolalytics.com/lol/seraphine/?mode=aram'><span>星籁歌姬</span></a></td><td><span>萨勒芬妮</span><!--酸辣粉、淑芬、歌姬、--></td><td><span>the Starry-Eyed Songstress</span></td><td><span>Seraphine</span></td></tr><tr><td><img src="https://game.gtimg.cn/images/lol/act/img/champion/Rell.png" style="zoom:25%;" /><span> </span><a href='https://lolalytics.com/lol/rell/?mode=aram'><span>镕铁少女</span></a></td><td><span>芮尔</span><!--铁女、马妹、--></td><td><span>the Iron Maiden</span></td><td><span>Rell</span></td></tr><tr><td><img src="https://game.gtimg.cn/images/lol/act/img/champion/Viego.png" style="zoom:25%;" /><span> </span><a href='https://lolalytics.com/lol/viego/?mode=aram'><span>破败之王</span></a></td><td><span>佛耶戈</span><!--破败王、--></td><td><span>the Ruined King</span></td><td><span>Viego</span></td></tr></tbody></table></figure></div>
+</body>
+</html>
