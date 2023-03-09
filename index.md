@@ -6,6 +6,8 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 [LOL](https://github.com/Serious54088/Serious54088.github.io/edit/main/League_of_Legends.html)
 
+[CSV](https://github.com/Serious54088/Serious54088.github.io/edit/main/CSV 标准.md)
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
