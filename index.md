@@ -6,7 +6,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 [LOL](https://serious54088.github.io/League_of_Legends.html)
 
-[CSV](https://serious54088.github.io/edit/main/CSV 标准.md)
+[CSV](https://serious54088.github.io/edit/main/CSV.md)
 
 ### Markdown
 
