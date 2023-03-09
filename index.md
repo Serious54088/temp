@@ -4,9 +4,9 @@ You can use the [editor on GitHub](https://github.com/Serious54088/Serious54088.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-[LOL](https://github.com/Serious54088/Serious54088.github.io/edit/main/League_of_Legends.html)
+[LOL](https://serious54088.github.io/League_of_Legends.html)
 
-[CSV](https://github.com/Serious54088/Serious54088.github.io/edit/main/CSV 标准.md)
+[CSV](https://serious54088.github.io/edit/main/CSV 标准.md)
 
 ### Markdown
 
